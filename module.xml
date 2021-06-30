@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module sdkVersion="3.5">
+    <!--The "id" identifies your plugin globally. Must be unique, must contain only alphanumeric characters, underlines and dots and must contain at least 5 characters and a maximum of 40. Once set the ID, you should not change it;)-->
+    <id>UNIQUE_PLUGIN_IDENTIFIER</id>
+    <!--"version" is the version of your plugin. When you release a new version of your module, change here =)-->
+    <version>0.1</version>
+    <name>Fichas Sangue &amp; Glória</name>
+    <description>Plugin para adicionar as fichas de sangue e glória como template ao firecast 8</description>
+    <author>ARJOM</author>
+    <site>https://github.com/ARJOM/fichas-sangue-e-gloria</site>
+    <contact>ricarteusuo11@gmail.com</contact>
+</module>
