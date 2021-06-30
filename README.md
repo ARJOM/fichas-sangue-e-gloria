@@ -1,0 +1,1 @@
+# Plugin - Sangue & Glória
