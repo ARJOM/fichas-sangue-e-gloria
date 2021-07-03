@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form formType="sheetTemplate" dataType="br.com.sangueegloria.SangueEGloria"
+      title="Ficha Sangue e Glória" name="frmSnG">
+
+      <!-- Aqui começa o layout da ficha -->
+      <layout left="20" top="20" height="25" width="200">    
+            <!-- Atributo -->      
+            <label align="left" text="Força: " autoSize="true"/>
+            <edit align="client" horzTextAlign="center" field="forca"/>          
+            <!-- Modificador -->
+            <label field="modificadorDeForca" align="right" text="valor" 
+                  width="70" horzTextAlign="center"/>
+      </layout>                            
+
+      <!-- Começa aqui os cálculos automáticos da ficha -->       
+      <dataLink field="forca">
+            <event name="onChange">
+                  local valor = math.floor(tonumber(sheet.forca or 1));
+                  local mod;
+                  
+                  if valor >= 11 then
+                        mod = "NaN";
+                  elseif valor == 10 then
+                        mod = "+3"
+                  elseif valor >= 8 then
+                        mod = "+2";
+                  elseif valor >= 5 then
+                        mod = "+1";
+                  elseif valor >= 1 then
+                        mod = "0";
+                  elseif valor == 0 then
+                        mod = "-1";
+                  else
+                        mod = "NaN";
+                  end;               
+
+                  sheet.modificadorDeForca = mod;
+            </event>
+      </dataLink>
+
+</form>
