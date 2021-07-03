@@ -1,41 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form formType="sheetTemplate" dataType="br.com.sangueegloria.SangueEGloria"
       title="Ficha Sangue e Glória" name="frmSnG">
+      
+      <template name="Atributo">
+
+		<layout align="top" height="25" margins="{right=5,left=5}">
+                  <label align="left" text="$(text)"/>
+			<edit align="left" width="50" field="$(field)" height="25" horzTextAlign="center" type="number"/>
+			<rectangle align="left" width="50" color="black" strokeColor="black" strokeSize="1">
+				<label align="client" field="modificador_de_$(field)" horzTextAlign="center" vertTextAlign="center"/>
+			</rectangle>
+		</layout>
+
+		<dataLink field="$(field)">
+			<event name="onChange">
+				
+                        local valor = math.floor(tonumber(sheet.$(field) or 1));
+                        local modificador;
+                        
+                        if valor >= 11 then
+                              modificador = "";
+                        elseif valor == 10 then
+                              modificador = "+3"
+                        elseif valor >= 8 then
+                              modificador = "+2";
+                        elseif valor >= 5 then
+                              modificador = "+1";
+                        elseif valor >= 1 then
+                              modificador = "0";
+                        elseif valor == 0 then
+                              modificador = "-1";
+                        else
+                              modificador = "";
+                        end;               
+
+                        sheet.modificador_de_$(field) = modificador
+			</event>
+		</dataLink>
+	</template>
 
       <!-- Aqui começa o layout da ficha -->
-      <layout left="20" top="20" height="25" width="200">    
-            <!-- Atributo -->      
-            <label align="left" text="Força: " autoSize="true"/>
-            <edit align="client" horzTextAlign="center" field="forca"/>          
-            <!-- Modificador -->
-            <label field="modificadorDeForca" align="right" text="valor" 
-                  width="70" horzTextAlign="center"/>
-      </layout>                            
-
-      <!-- Começa aqui os cálculos automáticos da ficha -->       
-      <dataLink field="forca">
-            <event name="onChange">
-                  local valor = math.floor(tonumber(sheet.forca or 1));
-                  local mod;
-                  
-                  if valor >= 11 then
-                        mod = "NaN";
-                  elseif valor == 10 then
-                        mod = "+3"
-                  elseif valor >= 8 then
-                        mod = "+2";
-                  elseif valor >= 5 then
-                        mod = "+1";
-                  elseif valor >= 1 then
-                        mod = "0";
-                  elseif valor == 0 then
-                        mod = "-1";
-                  else
-                        mod = "NaN";
-                  end;               
-
-                  sheet.modificadorDeForca = mod;
-            </event>
-      </dataLink>
+      <layout left="20" top="20" height="800" width="1200">
+            <Atributo text="Força: " field="forca"/>
+            <Atributo text="Destreza: " field="destreza"/>
+            <Atributo text="Constituição: " field="constituicao"/>
+            <Atributo text="Inteligência: " field="inteligencia"/>
+            <Atributo text="Carisma: " field="carisma"/>
+            <Atributo text="Perceção: " field="percepcao"/>
+      </layout>
 
 </form>
